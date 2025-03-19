@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
             body: formData
         })
         .then(() => {
-            confirmationMessage.style.display = "block"; // Affiche le message
+            confirmationMessage.classList.add("show"); // Affiche le message
             form.reset(); // Réinitialise le formulaire
+
+            // Supprime le message après 5 secondes
+            setTimeout(() => {
+                confirmationMessage.classList.remove("show");
+            }, 5000);
         })
         .catch(error => console.error("Erreur:", error));
     });
