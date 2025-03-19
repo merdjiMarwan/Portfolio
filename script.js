@@ -1,10 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    gsap.to("section", { opacity: 1, duration: 1, stagger: 0.5 });
-
     const form = document.getElementById("contact-form");
+    const confirmationMessage = document.getElementById("confirmation-message");
+
     form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        alert("Merci pour votre message !");
-        form.reset();
+        event.preventDefault(); // Empêche la redirection immédiate
+
+        // Envoyer les données à Netlify Forms
+        const formData = new FormData(form);
+        fetch("/", {
+            method: "POST",
+            body: formData
+        })
+        .then(() => {
+            confirmationMessage.style.display = "block"; // Affiche le message
+            form.reset(); // Réinitialise le formulaire
+        })
+        .catch(error => console.error("Erreur:", error));
     });
 });
