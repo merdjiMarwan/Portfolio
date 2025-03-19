@@ -18,6 +18,7 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 10%;
     background: rgba(10, 25, 47, 0.9);
     position: fixed;
@@ -90,6 +91,7 @@ section {
 .social-links {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
     margin-top: 20px;
 }
@@ -117,10 +119,6 @@ section {
 }
 
 /* SECTION 2 : Compétences */
-.skills {
-    text-align: center;
-}
-
 .skills h2 {
     font-size: 2.5em;
     color: #64ffda;
@@ -147,10 +145,6 @@ section {
 }
 
 /* SECTION 3 : Projets */
-.projects {
-    text-align: center;
-}
-
 .projects h2 {
     font-size: 2.5em;
     color: #64ffda;
@@ -177,10 +171,6 @@ section {
 }
 
 /* SECTION 4 : Contact */
-#contact {
-    text-align: center;
-}
-
 #contact h2 {
     font-size: 2.5em;
     color: #64ffda;
@@ -191,7 +181,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 400px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -250,4 +240,85 @@ footer {
     text-align: center;
     padding: 30px;
     background: rgba(255, 255, 255, 0.05);
+}
+
+/* 📱 RESPONSIVE DESIGN */
+/* Écran max 1024px */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-text p {
+        font-size: 1em;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+    }
+}
+
+/* Écran max 768px */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero-img img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .skills-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contact-form {
+        width: 90%;
+    }
+}
+
+/* Écran max 480px */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2em;
+    }
+
+    .hero-text p {
+        font-size: 0.9em;
+    }
+
+    .social-links a {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .skills h2,
+    .projects h2,
+    #contact h2 {
+        font-size: 2em;
+    }
+
+    .project-card {
+        width: 90%;
+    }
 }
