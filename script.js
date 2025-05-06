@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contact-form");
     const confirmationMessage = document.getElementById("confirmation-message");
 
+    // Cacher le message de confirmation au départ
+    confirmationMessage.classList.remove("show");
+
     form.addEventListener("submit", (event) => {
         event.preventDefault(); // Empêche la redirection immédiate
 
@@ -12,8 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
             body: formData
         })
         .then(() => {
-            confirmationMessage.classList.add("show"); // Affiche le message
-            form.reset(); // Réinitialise le formulaire
+            // Affiche le message de confirmation
+            confirmationMessage.classList.add("show");
+
+            // Réinitialise le formulaire
+            form.reset(); 
 
             // Supprime le message après 5 secondes
             setTimeout(() => {

@@ -9,10 +9,11 @@
     scroll-behavior: smooth;
 }
 
-/* Style général */
+/* Body */
 body {
     background-color: #E3FFE1;
     color: #00FF7B;
+    line-height: 1.6;
 }
 
 /* NAVBAR */
@@ -25,28 +26,21 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Logo */
-.logo {
-    display: flex;
-    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
 }
 
 .logo img {
     height: 50px;
-    width: auto;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .logo img:hover {
     transform: scale(1.1);
 }
 
-/* Menu */
 .menu {
     display: flex;
     gap: 20px;
@@ -56,27 +50,37 @@ nav {
     text-decoration: none;
     color: #00864F;
     font-weight: bold;
-    transition: 0.3s;
+    transition: color 0.3s ease, transform 0.2s;
 }
 
 .menu a:hover {
     color: #00FF7B;
+    transform: scale(1.05);
 }
 
 /* Sections */
 section {
     min-height: 100vh;
-    padding: 100px 10%;
+    padding: 120px 10% 80px;
     text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
 }
 
-/* SECTION 1 : Présentation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hero Section */
 .hero {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5%;
     text-align: left;
+    flex-wrap: wrap;
 }
 
 .hero-img img {
@@ -85,7 +89,12 @@ section {
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid #00FF7B;
-    box-shadow: 0px 0px 30px rgba(0, 255, 123, 0.5);
+    box-shadow: 0 0 30px rgba(0, 255, 123, 0.5);
+    transition: transform 0.4s ease;
+}
+
+.hero-img img:hover {
+    transform: rotate(1deg) scale(1.03);
 }
 
 .hero-text h1 {
@@ -112,7 +121,7 @@ section {
     text-decoration: none;
     color: #00FF7B;
     font-weight: bold;
-    transition: 0.3s;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-links img {
@@ -121,13 +130,13 @@ section {
 
 .social-links a:hover {
     color: #00864F;
+    transform: scale(1.1);
 }
 
-/* SECTION 2 : Compétences */
+/* Skills */
 .skills {
     background-color: #0a192f;
     color: #E0E0E0;
-    padding: 80px 10%;
 }
 
 .skills h2 {
@@ -144,22 +153,23 @@ section {
 }
 
 .skill {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     padding: 15px 30px;
     border-radius: 8px;
     font-size: 1.2em;
+    border: 1px solid #64ffda;
     transition: 0.3s;
 }
 
 .skill:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
 }
 
-/* SECTION 3 : Projets */
+/* Projects */
 .projects {
     background-color: #D9FAD7;
     color: #00FF7B;
-    padding: 80px 10%;
     box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -177,24 +187,60 @@ section {
 }
 
 .project-card {
-    background: rgba(0, 255, 123, 0.2);
-    padding: 20px;
-    border-radius: 10px;
+    background: rgba(0, 255, 123, 0.1);
+    padding: 25px;
+    border-radius: 15px;
     width: 300px;
     text-align: center;
     font-weight: bold;
-    transition: 0.3s;
+    border: 1px solid #00FF7B;
+    transition: transform 0.3s ease, background 0.3s;
+    position: relative;
 }
 
 .project-card:hover {
-    background: rgba(0, 255, 123, 0.3);
+    background: rgba(0, 255, 123, 0.2);
+    transform: scale(1.05);
 }
 
-/* SECTION 4 : Contact */
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    margin-top: 15px;
+    font-size: 1.8em;
+    color: #00864F;
+}
+
+.project-card p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #005F3B;
+}
+
+.project-link {
+    text-decoration: none;
+    color: #00FF7B;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-link:hover {
+    color: #00864F;
+    transform: scale(1.05);
+}
+
+/* Contact */
 #contact {
     background-color: #E3FFE1;
     color: #00FF7B;
-    padding: 80px 10%;
 }
 
 #contact h2 {
@@ -206,19 +252,25 @@ section {
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    margin: auto;
+    margin: 30px auto 0;
     gap: 15px;
 }
 
 #contact-form input,
 #contact-form textarea {
-    padding: 12px;
+    padding: 14px;
     border-radius: 5px;
-    border: none;
+    border: 2px solid transparent;
     font-size: 1em;
-    background: rgba(0, 255, 123, 0.1);
-    color: #00864F;
-    outline: none;
+    background: rgba(0, 255, 123, 0.08);
+    color: #004C2D;
+    transition: 0.3s ease;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #00FF7B;
+    background: rgba(0, 255, 123, 0.15);
 }
 
 #contact-form textarea {
@@ -234,7 +286,7 @@ section {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 #contact-form button:hover {
@@ -242,23 +294,26 @@ section {
     color: #E3FFE1;
 }
 
-/* Message de confirmation */
-#confirmation-message {
+.confirmation {
     display: none;
-    color: #00864F;
     font-weight: bold;
+    color: #00864F;
     margin-top: 15px;
+    animation: fadeIn 0.5s ease forwards;
 }
 
-/* FOOTER */
+.confirmation.show {
+    display: block;
+}
+
+/* Footer */
 footer {
     background-color: #00864F;
     color: white;
     text-align: center;
     padding: 20px;
     font-size: 1em;
-    position: relative;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 footer a {
@@ -271,18 +326,22 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* 📱 RESPONSIVE DESIGN */
+/* Responsive */
 @media (max-width: 1024px) {
     .hero {
         flex-direction: column;
         text-align: center;
+    }
+
+    .project-card {
+        width: 90%;
     }
 }
 
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
     }
 }
 
