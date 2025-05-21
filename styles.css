@@ -21,6 +21,7 @@
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     transition: background var(--transition), color var(--transition), transform var(--transition);
+    user-select: none;
 }
 
 /* Body */
