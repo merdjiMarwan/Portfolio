@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>GSAP Animations Avancées</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      margin-top: 100px;
+    }
+
+    .box, .scroll-box {
+      width: 100px;
+      height: 100px;
+      margin: 100px auto;
+      border-radius: 15px;
+    }
+
+    .box {
+      background: #e74c3c;
+    }
+
+    .scroll-box {
+      background: #3498db;
+      margin-top: 600px;
+    }
+
+    .hover-box {
+      width: 100px;
+      height: 100px;
+      background: #2ecc71;
+      border-radius: 15px;
+      margin: 200px auto;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <h1 class="title">Bienvenue avec GSAP</h1>
+
+  <div class="box"></div>
+
+  <div class="hover-box"></div>
+
+  <div class="scroll-box"></div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animation du titre avec effet d'apparition et rebond
+    gsap.from(".title", {
+      y: -100,
+      opacity: 0,
+      duration: 1.5,
+      ease: "bounce"
+    });
+
+    // Animation de la box rouge avec rotation et rebond
+    gsap.to(".box", {
+      x: 300,
+      rotation: 360,
+      duration: 2,
+      ease: "elastic.out(1, 0.5)"
+    });
+
+    // Animation au scroll avec scale et rotation
+    gsap.to(".scroll-box", {
+      x: 400,
+      rotation: 720,
+      scale: 1.8,
+      scrollTrigger: {
+        trigger: ".scroll-box",
+        start: "top 90%",
+        end: "top 40%",
+        scrub: true
+      }
+    });
+
+    // Effet au survol avec GSAP
+    const hoverBox = document.querySelector(".hover-box");
+
+    hoverBox.addEventListener("mouseenter", () => {
+      gsap.to(hoverBox, {
+        scale: 1.4,
+        backgroundColor: "#1abc9c",
+        duration: 0.4
+      });
+    });
+
+    hoverBox.addEventListener("mouseleave", () => {
+      gsap.to(hoverBox, {
+        scale: 1,
+        backgroundColor: "#2ecc71",
+        duration: 0.4
+      });
+    });
+  </script>
+
+</body>
+</html>

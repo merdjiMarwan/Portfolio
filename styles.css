@@ -26,7 +26,7 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease;
@@ -35,6 +35,7 @@ nav {
 .logo img {
     height: 50px;
     transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .logo img:hover {
@@ -53,9 +54,21 @@ nav {
     transition: color 0.3s ease, transform 0.2s;
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu a:focus {
     color: #00FF7B;
     transform: scale(1.05);
+    outline: none;
+}
+
+.menu a:focus {
+    outline: 2px dashed #00FF7B;
+    outline-offset: 4px;
+}
+
+.menu a.active {
+    color: #00FF7B;
+    border-bottom: 2px solid #00FF7B;
 }
 
 /* Sections */
@@ -88,6 +101,7 @@ section {
     width: 300px;
     height: 300px;
     animation: float 4s ease-in-out infinite;
+    will-change: transform;
 }
 
 .hero-img::before {
@@ -113,6 +127,7 @@ section {
     position: relative;
     z-index: 1;
     transition: transform 0.4s ease;
+    will-change: transform;
 }
 
 .hero-img img:hover {
@@ -133,6 +148,10 @@ section {
         transform: scale(1.1);
         opacity: 1;
     }
+}
+
+.hero-text {
+    padding: 0 10px;
 }
 
 .hero-text h1 {
@@ -166,9 +185,16 @@ section {
     width: 24px;
 }
 
-.social-links a:hover {
+.social-links a:hover,
+.social-links a:focus {
     color: #00864F;
     transform: scale(1.1);
+    outline: none;
+}
+
+.social-links a:focus {
+    outline: 2px dashed #00FF7B;
+    outline-offset: 4px;
 }
 
 /* Skills */
@@ -234,6 +260,7 @@ section {
     border: 1px solid #00FF7B;
     transition: transform 0.3s ease, background 0.3s;
     position: relative;
+    will-change: transform;
 }
 
 .project-card:hover {
@@ -309,6 +336,7 @@ section {
 #contact-form textarea:focus {
     border-color: #00FF7B;
     background: rgba(0, 255, 123, 0.15);
+    outline: none;
 }
 
 #contact-form textarea {
@@ -403,7 +431,7 @@ footer a:hover {
     }
 }
 
-/* Projet désactivé (Pokedex) */
+/* Projet désactivé */
 .project-card.disabled {
     opacity: 0.5;
     filter: grayscale(100%);
@@ -428,7 +456,7 @@ footer a:hover {
     50% { transform: scale(1.05); opacity: 0.7; }
 }
 
-/* Bouton GitHub encadré pour tous */
+/* Bouton GitHub */
 .github-button {
     margin-top: 15px;
     display: inline-block;
@@ -442,9 +470,16 @@ footer a:hover {
     transition: all 0.3s ease;
 }
 
-.github-button:hover {
+.github-button:hover,
+.github-button:focus {
     background-color: #00FF7B;
     color: #004C2D;
+    outline: none;
+}
+
+.github-button:focus {
+    outline: 2px dashed #00FF7B;
+    outline-offset: 4px;
 }
 
 /* Désactivation du lien */
@@ -452,4 +487,32 @@ footer a:hover {
     pointer-events: none;
     border-color: #aaa;
     color: #999;
+}
+
+/* Dark mode auto */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0a192f;
+        color: #E0E0E0;
+    }
+
+    nav {
+        background: rgba(10, 25, 47, 0.9);
+    }
+
+    .projects {
+        background-color: #102c4c;
+    }
+
+    .skills {
+        background-color: #0a192f;
+    }
+
+    #contact {
+        background-color: #0a192f;
+    }
+
+    footer {
+        background-color: #102c4c;
+    }
 }
