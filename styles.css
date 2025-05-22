@@ -36,7 +36,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10%;
+    padding: 15px 5%;
     position: fixed;
     width: 100%;
     top: 0;
@@ -48,21 +48,37 @@ nav {
 
 .logo img {
     height: 50px;
+    transition: height 0.3s ease;
 }
 
 .logo img:hover {
     transform: scale(1.1);
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 30px;
+    }
+}
+
 .menu {
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    align-items: center;
 }
 
 .menu a {
     text-decoration: none;
     color: var(--dark-green);
     font-weight: bold;
+    font-size: 0.9em;
 }
 
 .menu a:hover,
@@ -72,30 +88,30 @@ nav {
     outline: none;
 }
 
-/* Style pour le bouton de basculement du mode sombre */
-#theme-toggle {
+/* Style pour le bouton de basculement du mode sombre et du son */
+#theme-toggle, #sound-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: var(--dark-green);
     background-color: var(--primary);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s, transform 0.3s;
 }
 
-#theme-toggle:hover {
+#theme-toggle:hover, #sound-toggle:hover {
     transform: scale(1.1);
     background-color: var(--dark-green);
     color: var(--primary);
 }
 
-#theme-toggle:focus {
+#theme-toggle:focus, #sound-toggle:focus {
     outline: none;
 }
 
@@ -111,6 +127,23 @@ nav {
 
 #theme-toggle.dark-mode {
     animation: rotate 0.5s ease-in-out;
+}
+
+/* Responsive pour les boutons */
+@media (max-width: 768px) {
+    #theme-toggle, #sound-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    #theme-toggle, #sound-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
 }
 
 /* Sections */
@@ -479,12 +512,33 @@ footer a:hover {
 
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        padding: 10px 5%;
+    }
+
+    .menu {
+        gap: 5px;
+    }
+
+    .menu a {
+        font-size: 0.8em;
     }
 }
 
 @media (max-width: 480px) {
+    nav {
+        flex-direction: row;
+        padding: 8px 3%;
+    }
+
+    .menu {
+        gap: 3px;
+    }
+
+    .menu a {
+        font-size: 0.7em;
+    }
+
     .hero-text h1 {
         font-size: 2em;
     }
@@ -596,34 +650,14 @@ section.visible {
     }
 }
 
-/* Style pour le bouton de basculement des sons */
-#sound-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    color: var(--dark-green);
-    background-color: var(--primary);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-left: 10px;
-}
-
-#sound-toggle:hover {
-    transform: scale(1.1);
-    background-color: var(--dark-green);
+/* Style pour l'élément actif du menu */
+.menu a.active {
     color: var(--primary);
+    font-weight: bold;
+    transform: scale(1.05);
 }
 
-#sound-toggle:focus {
-    outline: none;
-}
-
-#sound-toggle.sound-off {
-    color: #ccc;
+/* Mode sombre */
+body.dark-mode .menu a.active {
+    color: #00FF7B;
 }
