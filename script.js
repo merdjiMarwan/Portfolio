@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Créer un contexte audio
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let hoverBuffer, clickBuffer;
+    let soundEnabled = true;
 
     // Charger les sons
     fetch('survol.mp3')
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fonction pour jouer un segment spécifique du fichier audio
     function playAudioSegment(buffer, startTime, duration) {
-      if (!buffer) return; // Vérifier si le buffer est chargé
+      if (!buffer || !soundEnabled) return; // Vérifier si le buffer est chargé et si les sons sont activés
 
       const source = audioContext.createBufferSource();
       source.buffer = buffer;
@@ -97,6 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
         logoImage.addEventListener('mouseenter', () => {
             playAudioSegment(hoverBuffer, 0, 1); // Jouer la première seconde du son de survol
         });
+    }
+
+    // Bascule entre l'activation et la désactivation des sons
+    const soundToggle = document.getElementById('sound-toggle');
+
+    if (soundToggle) {
+      soundToggle.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        soundToggle.classList.toggle('sound-off');
+        soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
+      });
     }
 });
 
