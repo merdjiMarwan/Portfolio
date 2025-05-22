@@ -441,7 +441,18 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 1em;
-    margin-top: 80px;
+    margin-top: 0;
+}
+
+/* Ajuster le style pour éviter la bande noire */
+body.dark-mode section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+body.dark-mode footer {
+    margin-top: 0;
+    padding-top: 20px;
 }
 
 footer a {
@@ -555,7 +566,6 @@ section.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 /* Animation de chargement */
 #loading-animation {
