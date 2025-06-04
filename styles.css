@@ -149,8 +149,11 @@ nav {
 /* Sections */
 section {
     min-height: 100vh;
-    padding: 120px 10% 80px;
-    text-align: center;
+    padding: 120px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     animation: fadeIn 1s forwards;
 }
@@ -164,11 +167,18 @@ section {
 /* Hero Section */
 .hero {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5%;
-    text-align: left;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 
 .hero-img {
@@ -261,6 +271,7 @@ section {
 .skills {
     background-color: var(--dark-bg);
     color: var(--light-text);
+    width: 100%;
 }
 
 .skills h2 {
@@ -293,6 +304,7 @@ section {
 .projects {
     background-color: #D9FAD7;
     color: var(--primary);
+    width: 100%;
     box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -404,6 +416,8 @@ section {
 #contact {
     background-color: var(--background);
     color: var(--primary);
+    width: 100%;
+    padding: 120px 10%;
 }
 
 #contact h2 {
@@ -414,13 +428,15 @@ section {
 #contact-form {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    width: 100%;
+    max-width: 800px;
     margin: 30px auto 0;
     gap: 15px;
 }
 
 #contact-form input,
 #contact-form textarea {
+    width: 100%;
     padding: 14px;
     border-radius: 5px;
     border: 2px solid transparent;
@@ -436,11 +452,12 @@ section {
 }
 
 #contact-form textarea {
-    height: 120px;
-    resize: none;
+    height: 200px;
+    resize: vertical;
 }
 
 #contact-form button {
+    width: 100%;
     background-color: var(--primary);
     color: #004C2D;
     font-weight: bold;
@@ -448,6 +465,7 @@ section {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    font-size: 1em;
 }
 
 #contact-form button:hover {
@@ -506,7 +524,7 @@ footer a:hover {
     }
 
     .project-card {
-        width: 90%;
+        width: 80%;
     }
 }
 
@@ -545,16 +563,6 @@ footer a:hover {
 
     .project-card {
         width: 90%;
-    }
-
-    .project-card.disabled .coming-soon {
-        font-size: 0.9em;
-        padding: 6px 12px;
-    }
-
-    .github-button {
-        font-size: 0.9em;
-        padding: 6px 10px;
     }
 }
 
@@ -610,54 +618,17 @@ body.dark-mode #contact-form button {
     color: #121212;
 }
 
-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Animation de chargement */
-#loading-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top-color: var(--primary);
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 /* Style pour l'élément actif du menu */
 .menu a.active {
-    color: var(--primary);
-    font-weight: bold;
-    transform: scale(1.05);
+    color: var(--primary) !important;
+    font-weight: bold !important;
+    transform: scale(1.05) !important;
 }
 
-/* Mode sombre */
 body.dark-mode .menu a.active {
-    color: #00FF7B;
+    color: #00FF7B !important;
+}
+
+body:not(.dark-mode) .menu a.active {
+    color: var(--primary) !important;
 }
