@@ -632,3 +632,132 @@ body.dark-mode .menu a.active {
 body:not(.dark-mode) .menu a.active {
     color: var(--primary) !important;
 }
+
+/* NAVIGATION FIXE EN HAUT À DROITE */
+.top-right-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #121212;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.top-right-nav .nav-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.top-right-nav .nav-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(65%) sepia(97%) saturate(1000%) hue-rotate(10deg);
+}
+
+.top-right-nav .nav-icon:hover {
+    background-color: var(--primary);
+    transform: scale(1.1);
+}
+
+.top-right-nav .nav-icon.active {
+    background-color: var(--primary);
+}
+
+.top-right-nav .nav-icon.active img {
+    filter: invert(100%);
+}
+
+/* Responsive : réduction en petit écran */
+@media (max-width: 768px) {
+    .top-right-nav {
+        top: 10px;
+        right: 10px;
+        padding: 6px;
+        gap: 10px;
+    }
+
+    .top-right-nav .nav-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .top-right-nav .nav-icon img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* NAVIGATION FIXE EN HAUT À DROITE */
+.top-right-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #121212;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.top-right-nav .nav-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.top-right-nav .nav-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(65%) sepia(97%) saturate(1000%) hue-rotate(10deg);
+}
+
+.top-right-nav .nav-icon:hover {
+    background-color: var(--primary);
+    transform: scale(1.1);
+}
+
+.top-right-nav .nav-icon.active {
+    background-color: var(--primary);
+}
+
+.top-right-nav .nav-icon.active img {
+    filter: invert(100%);
+}
+
+/* Empêcher scroll manuel */
+html, body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Empêche scroll avec molette et barre */
+html, body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Activation visuelle de la navigation */
+nav .menu a.nav-link.active {
+    color: var(--primary);
+    font-weight: bold;
+    border-bottom: 2px solid var(--primary);
+}

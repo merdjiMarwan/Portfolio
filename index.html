@@ -26,10 +26,10 @@
             <img src="logo.png" alt="Logo de Marwan Merdji">
         </div>
         <div class="menu">
-            <a href="#apropos">À propos</a>
-            <a href="#competences">Compétences</a>
-            <a href="#projets">Projets</a>
-            <a href="#contact">Contact</a>
+            <a href="#apropos" class="nav-link">À propos</a>
+            <a href="#competences" class="nav-link">Compétences</a>
+            <a href="#projets" class="nav-link">Projets</a>
+            <a href="#contact" class="nav-link">Contact</a>
             <button id="theme-toggle">🌙</button>
             <button id="sound-toggle">🔊</button>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="hero-text">
                 <h1>Marwan Merdji</h1>
-                <p>Développeur/Designer Web | Passionné de réseau et cybersécurité</p>
+                <p>Étudiant à l'ESGI</p>
                 <div class="social-links">
                     <a href="https://github.com/merdjiMarwan" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"> GitHub
@@ -99,7 +99,7 @@
                 <p>Site Web Administrateur pour la gestion d'un portail automatisé.</p>
                 <a href="https://github.com/JR-CIEL-2-PROJETS/25-easyportal" target="_blank"
                     class="project-link github-button">View on GitHub</a>
-                    <a href="https://projet-easyportal.netlify.app/" target="_blank"
+                <a href="https://projet-easyportal.netlify.app/" target="_blank"
                     class="project-link github-button">Web Site</a>
             </div>
 
@@ -131,6 +131,26 @@
     <footer>
         <p>&copy; 2025 Marwan Merdji</p>
     </footer>
+
+    <!-- Scroll fluide + désactivation molette -->
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Empêche scroll manuel (molette & tactile)
+        window.addEventListener('wheel', e => e.preventDefault(), { passive: false });
+        window.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+    </script>
 
 </body>
 
