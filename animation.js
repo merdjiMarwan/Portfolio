@@ -25,42 +25,34 @@ gsap.from(".hero-text", {
   ease: "power2.out"
 });
 
-// Compétences : animation en cascade
-gsap.from(".skills-list .skill", {
-  scrollTrigger: {
-    trigger: ".skills",
-    start: "top 80%",
-  },
-  opacity: 0,
-  y: 30,
-  stagger: 0.1,
-  duration: 0.6,
-  ease: "power2.out"
-});
-
-// Projets : chaque carte apparaît au scroll
-gsap.utils.toArray(".project-card").forEach((card, i) => {
-  gsap.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 85%",
-    },
-    opacity: 0,
-    y: 50,
-    duration: 0.8,
-    delay: i * 0.2,
+// Fonctions animation Compétences et Projets
+function animateSkills() {
+  gsap.set(".skills-list .skill", { opacity: 0, y: 30 });
+  gsap.to(".skills-list .skill", {
+    opacity: 1,
+    y: 0,
+    stagger: 0.1,
+    duration: 0.6,
     ease: "power2.out"
   });
-});
+}
 
-// Contact : fade-in au scroll
-gsap.from("#contact", {
-  scrollTrigger: {
-    trigger: "#contact",
-    start: "top 80%",
-  },
-  opacity: 0,
-  y: 100,
-  duration: 1.2,
-  ease: "power2.out"
+function animateProjects() {
+  const cards = gsap.utils.toArray(".project-card");
+  gsap.set(cards, { opacity: 0, y: 50 });
+  cards.forEach((card, i) => {
+    gsap.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: i * 0.3,
+      ease: "power2.out"
+    });
+  });
+}
+
+// Au clic n'importe où dans la page, on lance les deux animations
+document.addEventListener("click", () => {
+  animateSkills();
+  animateProjects();
 });

@@ -761,3 +761,105 @@ nav .menu a.nav-link.active {
     font-weight: bold;
     border-bottom: 2px solid var(--primary);
 }
+
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Section Parcours */
+.parcours {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+.parcours h2 {
+    font-size: 2.5em;
+    color: var(--primary);
+    margin-bottom: 50px;
+}
+
+.timeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: relative;
+    height: 2px;
+    background: var(--primary);
+    margin-bottom: 60px;
+}
+
+.timeline-items {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    width: 120px;
+    text-align: center;
+}
+
+.circle {
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -30px; /* Ajustement pour placer le cercle sur la ligne */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px var(--primary);
+}
+
+.date {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary);
+}
+
+.content {
+    margin-top: 30px; /* Ajustement pour placer le texte sous la ligne */
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline-items {
+        flex-direction: column;
+    }
+
+    .timeline-item {
+        margin-bottom: 30px;
+        align-items: flex-start;
+        text-align: left;
+        padding-left: 40px;
+    }
+
+    .timeline-line {
+        left: 30px;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+    }
+
+    .circle {
+        left: 20px;
+        top: 0;
+    }
+}
