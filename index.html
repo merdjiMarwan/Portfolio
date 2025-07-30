@@ -184,25 +184,37 @@
         <p>&copy; 2025 Marwan Merdji</p>
     </footer>
 
-    <!-- Scroll fluide + désactivation molette -->
     <script>
-        const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
-
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                link.classList.add('active');
-            });
+    function showOnlySection(targetId) {
+        sections.forEach(section => {
+            if (section.id === targetId) {
+                section.classList.add('active-section');
+            } else {
+                section.classList.remove('active-section');
+            }
         });
+    }
 
-        // Empêche scroll manuel (molette & tactile)
-        window.addEventListener('wheel', e => e.preventDefault(), { passive: false });
-        window.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
-    </script>
+    window.addEventListener('DOMContentLoaded', () => {
+        showOnlySection('apropos'); // Affiche la première section par défaut
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            showOnlySection(targetId);
+
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+</script>
+
+
 
 </body>
 
