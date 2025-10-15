@@ -1,221 +1,222 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Marwan Merdji</title>
-    <link rel="icon" type="image/png" href="marwan2.png">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script defer src="animation.js"></script>
+    <title>Marwan's Portfolio</title>
+    
+    <link rel="icon" type="image/png" href="img/marwan2.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ff41;
+            --background-color: #000;
+            --text-color: #c5c5c5;
+            --glitch-color-1: #ff00c1;
+            --glitch-color-2: #00fff9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Share Tech Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(10, 10, 10, 0.85);
+            padding: 40px 50px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2), 0 0 20px rgba(0, 255, 65, 0.2) inset;
+            z-index: 1;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .glitch {
+            font-family: 'Major Mono Display', monospace;
+            /* MODIFIÉ : Taille de police fluide qui s'adapte à la largeur de l'écran */
+            font-size: clamp(2.2rem, 10vw, 4rem); 
+            color: var(--primary-color);
+            text-transform: uppercase;
+            position: relative;
+            animation: glitch 1.5s infinite;
+            /* MODIFIÉ : Force le retour à la ligne pour les mots trop longs */
+            word-break: break-all; 
+        }
+
+        .glitch:before,
+        .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            overflow: hidden;
+        }
+
+        .glitch:before {
+            left: 2px;
+            text-shadow: -2px 0 var(--glitch-color-1);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch:after {
+            left: -2px;
+            text-shadow: -2px 0 var(--glitch-color-2);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch { 0%, 100% { text-shadow: -1.5px -1.5px 0 var(--glitch-color-1), 1.5px 1.5px 0 var(--glitch-color-2); } 25% { text-shadow: 1.5px 1.5px 0 var(--glitch-color-1), -1.5px -1.5px 0 var(--glitch-color-2); } 50% { text-shadow: 1.5px -1.5px 0 var(--glitch-color-1), -1.5px 1.5px 0 var(--glitch-color-2); } 75% { text-shadow: -1.5px 1.5px 0 var(--glitch-color-1), 1.5px -1.5px 0 var(--glitch-color-2); } }
+        @keyframes glitch-anim-1 { 0% { clip-path: inset(10% 0 80% 0); } 20% { clip-path: inset(50% 0 10% 0); } 40% { clip-path: inset(25% 0 5% 0); } 60% { clip-path: inset(90% 0 2% 0); } 80% { clip-path: inset(5% 0 70% 0); } 100% { clip-path: inset(70% 0 20% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(85% 0 5% 0); } 20% { clip-path: inset(15% 0 60% 0); } 40% { clip-path: inset(40% 0 30% 0); } 60% { clip-path: inset(20% 0 75% 0); } 80% { clip-path: inset(65% 0 10% 0); } 100% { clip-path: inset(30% 0 45% 0); } }
+
+        p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            color: var(--primary-color);
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <canvas id="matrix"></canvas>
 
-    <!-- Animation de chargement -->
-    <div id="loading-animation">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">
-            <img src="logo.png" alt="Logo de Marwan Merdji">
+    <div class="container">
+        <h1 class="glitch" data-text="SYSTEM_UPDATE">SYSTEM_UPDATE</h1>
+        <p>
+            Mon portfolio est actuellement en cours de maintenance pour une mise à niveau majeure. <br>
+            Il sera de retour en ligne, plus performant et sécurisé que jamais.
+        </p>
+        <div class="cta-buttons">
+            <a href="https://www.linkedin.com/in/marwan-m" class="btn" target="_blank" rel="noopener noreferrer">Profil LinkedIn</a>
+            <a href="pdf/Marwan.pdf" class="btn" target="_blank">Visualiser mon CV</a>
         </div>
-        <div class="menu">
-            <a href="#apropos" class="nav-link">À propos</a>
-            <a href="#parcours" class="nav-link">Parcours</a>
-            <a href="#competences" class="nav-link">Compétences</a>
-            <a href="#projets" class="nav-link">Projets</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <button id="theme-toggle">🌙</button>
-            <button id="sound-toggle">🔊</button>
-        </div>
-    </nav>
-
-    <!-- SECTION 1 : Présentation -->
-    <section class="hero" id="apropos">
-        <div class="hero-content">
-            <div class="hero-img">
-                <img src="marwan2.png" alt="Photo de profil">
-            </div>
-            <div class="hero-text">
-                <h1>Marwan Merdji</h1>
-                <p>A la recherche d'une alternance en Cybersécurité</p>
-                <div class="social-links">
-                    <a href="https://github.com/merdjiMarwan" target="_blank">
-                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"> GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/marwan-m-73a08b2a1" target="_blank">
-                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"> LinkedIn
-                    </a>
-                    <a href="mailto:marwan.merdji@gmail.com">
-                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
-                        marwan.merdji@gmail.com
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="parcours" class="parcours">
-  <h2>Parcours</h2>
-  <em>Un passionné d'informatique depuis ma tendre enfance</em>
-  <div class="timeline-container">
-    <div class="timeline-line"></div>
-    <div class="timeline-item" style="left: 5%;">
-      <div class="circle"></div>
-      <div class="date">2020-2021</div>
-      <div class="content">
-        <strong>Seconde générale Option SNT</strong><br>
-        
-      </div>
     </div>
-    <div class="timeline-item" style="left: 30%;">
-      <div class="circle"></div>
-      <div class="date">2021 - 2023</div>
-      <div class="content">
-        <strong>Bac STI2D</strong>
-        <em>Admis mention Assez Bien</em>
-      </div>
-    </div>
-    <div class="timeline-item" style="left: 55%;">
-      <div class="circle"></div>
-      <div class="date">2023 - 2025</div>
-      <div class="content">
-        <strong>BTS CIEL</strong><br>
-        <em>Admis à 13,27</em>
-      </div>
-    </div>
-    <div class="timeline-item" style="left: 80%;">
-      <div class="circle"></div>
-      <div class="date">2025 - 2026</div>
-      <div class="content">
-        <strong>Recherche Cybersécurité 3ème année en alternance</strong><br>
-        
-      </div>
-    </div>
-  </div>
-<div class="cv-download">
-      <a href="Marwan.pdf" download="Marwan_Merdji_CV.pdf" class="download-link">
-        <button class="download-button">Télécharger mon CV</button>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-
-    <!-- SECTION 2 : Compétences -->
-    <section class="skills" id="competences">
-        <h2>Compétences</h2>
-        <div class="skills-list">
-            <div class="skill">HTML / CSS</div>
-            <div class="skill">Figma</div>
-            <div class="skill">PHP</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">Python</div>
-            <div class="skill">C++</div>
-            <div class="skill">MySQL</div>
-            <div class="skill">Cisco Packet Tracer</div>
-            <div class="skill">BurpSuite</div>
-            <div class="skill">GitHub</div>
-            <div class="skill">Docker</div>
-            <div class="skill">StarUML</div>
-            <div class="skill">Kali Linux</div>
-            <div class="skill">Windows</div>
-            <div class="skill">KeePass</div>
-            <div class="skill">WireShark</div>
-            <div class="skill">VmWare</div>
-        </div>
-    </section>
-
-    <!-- SECTION 3 : Projets -->
-    <section class="projects" id="projets">
-        <h2>Projets</h2>
-        <div class="project-list">
-            <div class="project-card">
-                <img src="cryps.png" alt="Logiciel de Cryptage" class="project-image">
-                <h3>Logiciel de Cryptage</h3>
-                <p>Logiciel de cryptage pour sécuriser les données personnelles.</p>
-                <a href="https://github.com/kallechem/Project-Cryptag" target="_blank"
-                    class="project-link github-button">View on GitHub</a>
-            </div>
-
-            <div class="project-card">
-                <img src="easyportal.png" alt="Portail Automatisé" class="project-image">
-                <h3>Easy Portal</h3>
-                <p>Site Web Administrateur pour la gestion d'un portail automatisé.</p>
-                <a href="https://github.com/JR-CIEL-2-PROJETS/25-easyportal" target="_blank"
-                    class="project-link github-button">View on GitHub</a>
-                <a href="https://projet-easyportal.netlify.app/" target="_blank"
-                    class="project-link github-button">Web Site</a>
-            </div>
-
-            <div class="project-card disabled">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                    alt="Pokedex" class="project-image">
-                <h3>Pokedex</h3>
-                <p>Site web en cours de développement pour consulter les Pokémon.</p>
-                <div class="coming-soon">Coming Soon</div>
-                <a href="#" class="project-link github-button disabled-link" onclick="return false;">View on GitHub</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4 : Contact -->
-    <section id="contact">
-        <h2>Contactez-moi</h2>
-        <form id="contact-form" name="contact" method="POST" data-netlify="true">
-            <input type="text" name="name" placeholder="Nom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Votre message" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-        <div id="confirmation-message" class="confirmation">
-            Votre message a bien été envoyé !
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Marwan Merdji</p>
-    </footer>
 
     <script>
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
+        const canvas = document.getElementById('matrix');
+        const context = canvas.getContext('2d');
 
-    function showOnlySection(targetId) {
-        sections.forEach(section => {
-            if (section.id === targetId) {
-                section.classList.add('active-section');
-            } else {
-                section.classList.remove('active-section');
+        let columns;
+        let rainDrops = [];
+        let fontSize = 16;
+
+        function setupCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            columns = Math.floor(canvas.width / fontSize);
+            rainDrops = [];
+
+            for (let x = 0; x < columns; x++) {
+                rainDrops[x] = 1;
             }
+        }
+        
+        setupCanvas();
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+=-{}[]|;:"<>,.?/~';
+
+        const draw = () => {
+            context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.fillStyle = '#00ff41';
+            context.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                
+                if(rainDrops[i] * fontSize < canvas.height) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    context.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                }
+
+                rainDrops[i]++;
+            }
+        };
+
+        let intervalId = setInterval(draw, 33);
+
+        window.addEventListener('resize', () => {
+            clearInterval(intervalId);
+            setupCanvas();
+            intervalId = setInterval(draw, 33);
         });
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        showOnlySection('apropos'); // Affiche la première section par défaut
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            showOnlySection(targetId);
-
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            link.classList.add('active');
-        });
-    });
-</script>
-
-
-
+    </script>
 </body>
-
 </html>
