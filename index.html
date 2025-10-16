@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marwan's Portfolio</title>
-    
+    <title>Marwan Merdji - Portfolio Cybersécurité</title>
+    <meta name="description" content="Portfolio de Marwan Merdji, spécialisé en cybersécurité. Actuellement en maintenance pour une mise à jour majeure. Contactez-moi sur LinkedIn ou consultez mon CV.">
+    <meta name="keywords" content="Marwan Merdji, portfolio, cybersécurité, cyber security, CV">
+    <meta name="author" content="Marwan Merdji">
     <link rel="icon" type="image/png" href="img/marwan2.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -18,13 +19,7 @@
             --glitch-color-1: #ff00c1;
             --glitch-color-2: #00fff9;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--background-color);
             color: var(--text-color);
@@ -37,16 +32,7 @@
             overflow: hidden;
             padding: 15px;
         }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
+        canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         .container {
             background: rgba(10, 10, 10, 0.85);
             padding: 40px 50px;
@@ -57,20 +43,33 @@
             width: 100%;
         }
 
-        .glitch {
+        /* AJOUT : Classe pour cacher le H1 de manière accessible */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* MODIFIÉ : Le H2 prend le style du titre visible */
+        .glitch-title {
             font-family: 'Major Mono Display', monospace;
-            /* MODIFIÉ : Taille de police fluide qui s'adapte à la largeur de l'écran */
             font-size: clamp(2.2rem, 10vw, 4rem); 
             color: var(--primary-color);
             text-transform: uppercase;
             position: relative;
             animation: glitch 1.5s infinite;
-            /* MODIFIÉ : Force le retour à la ligne pour les mots trop longs */
             word-break: break-all; 
+            margin-bottom: 20px;
         }
 
-        .glitch:before,
-        .glitch:after {
+        .glitch-title:before,
+        .glitch-title:after {
             content: attr(data-text);
             position: absolute;
             top: 0;
@@ -80,37 +79,15 @@
             background: rgba(10, 10, 10, 0.85);
             overflow: hidden;
         }
-
-        .glitch:before {
-            left: 2px;
-            text-shadow: -2px 0 var(--glitch-color-1);
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-        }
-
-        .glitch:after {
-            left: -2px;
-            text-shadow: -2px 0 var(--glitch-color-2);
-            animation: glitch-anim-2 2s infinite linear alternate-reverse;
-        }
+        .glitch-title:before { left: 2px; text-shadow: -2px 0 var(--glitch-color-1); animation: glitch-anim-1 2s infinite linear alternate-reverse; }
+        .glitch-title:after { left: -2px; text-shadow: -2px 0 var(--glitch-color-2); animation: glitch-anim-2 2s infinite linear alternate-reverse; }
         
         @keyframes glitch { 0%, 100% { text-shadow: -1.5px -1.5px 0 var(--glitch-color-1), 1.5px 1.5px 0 var(--glitch-color-2); } 25% { text-shadow: 1.5px 1.5px 0 var(--glitch-color-1), -1.5px -1.5px 0 var(--glitch-color-2); } 50% { text-shadow: 1.5px -1.5px 0 var(--glitch-color-1), -1.5px 1.5px 0 var(--glitch-color-2); } 75% { text-shadow: -1.5px 1.5px 0 var(--glitch-color-1), 1.5px -1.5px 0 var(--glitch-color-2); } }
         @keyframes glitch-anim-1 { 0% { clip-path: inset(10% 0 80% 0); } 20% { clip-path: inset(50% 0 10% 0); } 40% { clip-path: inset(25% 0 5% 0); } 60% { clip-path: inset(90% 0 2% 0); } 80% { clip-path: inset(5% 0 70% 0); } 100% { clip-path: inset(70% 0 20% 0); } }
         @keyframes glitch-anim-2 { 0% { clip-path: inset(85% 0 5% 0); } 20% { clip-path: inset(15% 0 60% 0); } 40% { clip-path: inset(40% 0 30% 0); } 60% { clip-path: inset(20% 0 75% 0); } 80% { clip-path: inset(65% 0 10% 0); } 100% { clip-path: inset(30% 0 45% 0); } }
 
-        p {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .cta-buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
+        p { font-size: 1.1rem; line-height: 1.6; }
+        .cta-buttons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .btn {
             color: var(--primary-color);
             background-color: transparent;
@@ -122,32 +99,13 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-
-        .btn:hover {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
-        }
+        .btn:hover { background-color: var(--primary-color); color: var(--background-color); box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .btn {
-                width: 80%;
-                max-width: 300px;
-            }
+            .container { padding: 30px 20px; }
+            p { font-size: 1rem; }
+            .cta-buttons { flex-direction: column; align-items: center; gap: 15px; }
+            .btn { width: 80%; max-width: 300px; }
         }
     </style>
 </head>
@@ -155,9 +113,12 @@
     <canvas id="matrix"></canvas>
 
     <div class="container">
-        <h1 class="glitch" data-text="SYSTEM_UPDATE">SYSTEM_UPDATE</h1>
+        <h1 class="visually-hidden">Marwan Merdji</h1>
+
+        <h2 class="glitch-title" data-text="SYSTEM_UPDATE">SYSTEM_UPDATE</h2>
+        
         <p>
-            Mon portfolio est actuellement en cours de maintenance pour une mise à niveau majeure. <br>
+            Le portfolio de <strong>Marwan Merdji</strong> est actuellement en cours de maintenance pour une mise à niveau majeure. <br>
             Il sera de retour en ligne, plus performant et sécurisé que jamais.
         </p>
         <div class="cta-buttons">
@@ -167,51 +128,36 @@
     </div>
 
     <script>
+        // Le script JavaScript reste exactement le même
         const canvas = document.getElementById('matrix');
         const context = canvas.getContext('2d');
-
         let columns;
         let rainDrops = [];
         let fontSize = 16;
-
         function setupCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
             columns = Math.floor(canvas.width / fontSize);
             rainDrops = [];
-
-            for (let x = 0; x < columns; x++) {
-                rainDrops[x] = 1;
-            }
+            for (let x = 0; x < columns; x++) { rainDrops[x] = 1; }
         }
-        
         setupCanvas();
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+=-{}[]|;:"<>,.?/~';
-
         const draw = () => {
             context.fillStyle = 'rgba(0, 0, 0, 0.05)';
             context.fillRect(0, 0, canvas.width, canvas.height);
-
             context.fillStyle = '#00ff41';
             context.font = fontSize + 'px monospace';
-
             for (let i = 0; i < rainDrops.length; i++) {
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) { rainDrops[i] = 0; }
                 if(rainDrops[i] * fontSize < canvas.height) {
                     const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
                     context.fillText(text, i * fontSize, rainDrops[i] * fontSize);
                 }
-
                 rainDrops[i]++;
             }
         };
-
         let intervalId = setInterval(draw, 33);
-
         window.addEventListener('resize', () => {
             clearInterval(intervalId);
             setupCanvas();
